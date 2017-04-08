@@ -32,10 +32,10 @@ module Api
 
       def stop
         if @item.email != nil and @item.auth_token != nil
+          @auth_t = @item.auth_token
           @item.email = nil
           @item.auth_token = nil
           @pastt = @item.updated_at
-          @auth_t = @item.auth_token
           @sat_amt = (((Time.now.to_datetime - @pastt.to_datetime)*24*60*60).to_i)*@item.tariff
           if @item.save
             callUno(@auth_t, @sat_amt)
@@ -76,10 +76,11 @@ module Api
 
         request = Net::HTTP::Post.new(url)
         request["content-type"] = 'application/json'
-        request["authorization"] = auth_token
+        request["authorization"] = "Bearer "+auth_token
+        p request
         request["cache-control"] = 'no-cache'
         request.body = "{\r\n\t\"to_address\":\"3Eudzybvhf7EkEJQyTK42h7CsagQoWhYEn\",\r\n\t\"btcamount\":\""+(amount.to_f/100000000).encode_json+"\"\r\n}"
-
+        p request.body
         response = http.request(request)
         p response.read_body
       end
