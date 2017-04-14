@@ -1,24 +1,17 @@
-# README
+# BitRent App API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the source of backend server of BitRent App, developed in Rails 5 API only mode.
 
-Things you may want to cover:
+It is responsible for:
 
-* Ruby version
+* Keeping track of rent time
 
-* System dependencies
+* Generating bill amount
 
-* Configuration
+* Handling user's payment options
 
-* Database creation
+* Billing the amount to user's Unocoin wallet
 
-* Database initialization
+* Keeping list of items available for tracking
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Preventing renting out items which are already rented or on hold
